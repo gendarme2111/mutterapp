@@ -23,8 +23,8 @@ public class UserDAO {
 			e1.printStackTrace();
 		}
 		// データベース接続
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
+		try {
+			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 			// INSERT文の準備(idは自動連番なので指定しなくてよい）
 			String sql = "INSERT INTO MUTTER_USERS(NAME, PASSWORD) VALUES(?, ?)";
@@ -41,6 +41,9 @@ public class UserDAO {
 			} else {
 				this.flag = true;
 			}
+
+			conn.close();
+			pStmt.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
