@@ -60,8 +60,8 @@ public class UserDAO {
 			e1.printStackTrace();
 		}
 
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
+		try {
+			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 			// SELECT文の準備(idは自動連番なので指定しなくてよい）
 			// 入力されたユーザ名に対応するパスワードを抽出
@@ -82,6 +82,9 @@ public class UserDAO {
 				this.flag = true;
 			}
 
+			conn.close();
+			pStmt.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return this.flag = false;
@@ -100,8 +103,8 @@ public class UserDAO {
 
 		User findUser = null;
 
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
+		try {
+			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 			// SELECT文の準備(idは自動連番なので指定しなくてよい）
 			// 入力されたユーザ名に対応するパスワードを抽出
@@ -120,6 +123,9 @@ public class UserDAO {
 
 				findUser = new User(username, pass);
 			}
+
+			conn.close();
+			pStmt.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
