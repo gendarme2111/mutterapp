@@ -20,7 +20,7 @@
 				      	<div class="modal-header">
 				        </div>
 				        <div class="modal-body">
-				            <form class="needs-validation" novalidate action="/registerapp/Main" method="post">
+				            <form class="needs-validation" novalidate action="/Main" method="post">
                       		<div class="form-group">
 				            	<textarea class="form-control pt-5 pb-4" style="text-align:center;" name="text" placeholder="こちらにつぶやいて下さい"required></textarea>
       							<div class="invalid-feedback">何かつぶやいてください</div>
