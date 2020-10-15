@@ -19,7 +19,7 @@ public class RegisterController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -27,8 +27,8 @@ public class RegisterController extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("name");
-		String pass = request.getParameter("pass");
+		String name = escape(request.getParameter("name"));
+		String pass = escape(request.getParameter("pass"));
 
 		CheckLogic ck = new CheckLogic();
 		String nameErr = ck.nameCheck(name);
@@ -49,7 +49,7 @@ public class RegisterController extends HttpServlet {
 				request.setAttribute("registerErr", registerErr);
 				request.setAttribute("nameErr", "");
 				request.setAttribute("passErr", "");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 				dispatcher.forward(request, response);
 			}
 
@@ -57,8 +57,19 @@ public class RegisterController extends HttpServlet {
 			request.setAttribute("registerErr", "");
 			request.setAttribute("nameErr", nameErr);
 			request.setAttribute("passErr", passErr);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
+	//エスケープ処理
+		private static String escape(String val) {
+			if (val == null)
+				return "";
+			val = val.replaceAll("&", "& amp;");
+			val = val.replaceAll("<", "& lt;");
+			val = val.replaceAll(">", "& gt;");
+			val = val.replaceAll("\"", "&quot;");
+			val = val.replaceAll("'", "&apos;");
+			return val;
+}
 }

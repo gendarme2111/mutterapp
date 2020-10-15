@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-	<%	if(request.getAttribute("nameErr")!=null||request.getAttribute("passErr")!=null||request.getAttribute("loginErr")!=null){ %>
-	<p class="text-center mt-5">Mutterにログイン</p>
+	<%	if(request.getAttribute("nameErr")!=null||request.getAttribute("passErr")!=null||request.getAttribute("registerErr")!=null){ %>
+	<p class="text-center mt-5">ユーザー登録をお願いします</p>
 	<div class="border mx-auto w-25 bg-primary">
-		<form action="/LoginController" method="post">
+		<form action="/Register" method="post">
 			<div class="form-group mt-4 ml-4 mr-4">
 				ユーザー名<input class="form-control mt-2 " type="text" name="name" placeholder="半角英数字で入力">
-				<small class="text-danger"><%= request.getAttribute("loginErr") %></small>
+				<small class="text-danger"><%= request.getAttribute("registerErr") %></small>
 				<small class="text-danger"><%= request.getAttribute("nameErr") %></small><br>
 				パスワード<input class="form-control mt-2" type="password" name="pass" placeholder="半角英数字で入力">
 				<small class="text-danger"><%= request.getAttribute("passErr") %></small><br>
@@ -24,9 +24,9 @@
 		</form>
 	</div>
 	<%}else{ %>
-	<p class="text-center mt-5">Mutterにログイン</p>
+	<p class="text-center mt-5">ユーザー登録をお願いします</p>
 	<div class="border mx-auto w-25 bg-primary">
-		<form action="/LoginController" method="post">
+		<form action="/Register" method="post">
 			<div class="form-group mt-4 ml-4 mr-4">
 				ユーザー名<input class="form-control mt-2 " type="text" name="name" placeholder="半角英数字で入力">
 				パスワード<input class="form-control mt-2" type="password" name="pass" placeholder="半角英数字で入力">

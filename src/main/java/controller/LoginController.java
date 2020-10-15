@@ -14,7 +14,7 @@ import model.CheckLogic;
 import model.LoginLogic;
 import model.User;
 
-@WebServlet("/Login")
+@WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,8 +29,8 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("name");
-		String pass = request.getParameter("pass");
+		String name = escape(request.getParameter("name"));
+		String pass = escape(request.getParameter("pass"));
 
 		CheckLogic ck = new CheckLogic();
 		String nameErr = ck.nameCheck(name);
@@ -39,20 +39,20 @@ public class LoginController extends HttpServlet {
 		if ((nameErr == null && passErr == null) || (nameErr.length() == 0 && passErr.length() == 0)) {
 
 			LoginLogic loginLogic = new LoginLogic();
-			User user = new User(name,pass);
+			User user = new User(name, pass);
 			User loginUser = loginLogic.executeLogin(user);
 
-			if(loginUser !=null) {
+			if (loginUser != null) {
 
 				HttpSession session = request.getSession();
-			    session.setAttribute("loginUser",loginUser);
+				session.setAttribute("loginUser", loginUser);
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginResult.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 				dispatcher.forward(request, response);
 
-			}else {
-				String loginErr ="ユーザ名または名前が正しくありません";
-				request.setAttribute("loginErr",loginErr);
+			} else {
+				String loginErr = "ユーザ名またはパスワードが正しくありません";
+				request.setAttribute("loginErr", loginErr);
 				request.setAttribute("nameErr", "");
 				request.setAttribute("passErr", "");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
@@ -66,5 +66,17 @@ public class LoginController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 		}
+	}
+
+	//エスケープ処理
+	private static String escape(String val) {
+		if (val == null)
+			return "";
+		val = val.replaceAll("&", "& amp;");
+		val = val.replaceAll("<", "& lt;");
+		val = val.replaceAll(">", "& gt;");
+		val = val.replaceAll("\"", "&quot;");
+		val = val.replaceAll("'", "&apos;");
+		return val;
 	}
 }
