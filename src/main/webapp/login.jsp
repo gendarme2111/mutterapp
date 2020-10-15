@@ -18,7 +18,7 @@
 				パスワード<input class="form-control mt-2" type="password" name="pass" placeholder="半角英数字で入力">
 				<small class="text-danger"><%= request.getAttribute("passErr") %></small><br>
 				<div class="text-center"><br>
-					<button class="btn btn-secondary" type="submit">登録</button>
+					<button class="btn btn-secondary" type="submit">ログイン</button>
 				</div>
 			</div>
 		</form>
@@ -31,7 +31,7 @@
 				ユーザー名<input class="form-control mt-2 " type="text" name="name" placeholder="半角英数字で入力">
 				パスワード<input class="form-control mt-2" type="password" name="pass" placeholder="半角英数字で入力">
 				<div class="text-center"><br>
-					<button class="btn btn-secondary" type="submit">登録</button>
+					<button class="btn btn-secondary" type="submit">ログイン</button>
 				</div>
 			</div>
 		</form>
