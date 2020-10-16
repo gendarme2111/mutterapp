@@ -11,6 +11,7 @@ List<Mutter> mutterList =(List<Mutter>) application.getAttribute("mutterList");
 SiteEV siteEV = (SiteEV) application.getAttribute("siteEV");
 //アプリケーションスコープに保存されたsiteEVリストを取得
 List<SiteEV> siteEVList = (List<SiteEV>) application.getAttribute("siteEVList");
+//ログイン時失敗時のエラーメッセージをリクエストスコープで取得
 String errText = (String)request.getAttribute("errText");
 %>
 <!DOCTYPE html>
@@ -18,12 +19,15 @@ String errText = (String)request.getAttribute("errText");
 <head>
 <meta charset="UTF-8">
 <title>Mutter</title>
+<!-- bootstrapのcssへのlink -->	
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+<!-- fontawsomeのCDNへのlink -->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet">
+<!-- cssへのlink -->
 <link href="./css/stylesheet.css" rel="stylesheet">
 </head>
 <body>
