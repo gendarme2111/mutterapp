@@ -4,7 +4,7 @@
 	<div class="row d-flex">
 		<div class="col-md-3"></div>
 		<div class="col-md-6 text-center">
-			<i class="<i class="far fa-meh fa-7x"></i>"></i>
+			<i class="far fa-meh fa-7x"></i>
 		</div>
 		<div class="col-md-3 d-flex justify-content-end align-items-end">
 			<div class="mb-2">
