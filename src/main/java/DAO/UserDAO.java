@@ -123,7 +123,7 @@ public class UserDAO {
 				String hashedPass = rs.getString("password");
 				this.hashedPass = hashedPass;
 			}
-			if (BCrypt.checkpw(user.getPass(), hashedPass)) {
+			if (hashedPass!=null&&BCrypt.checkpw(user.getPass(), hashedPass)) {
 				// 認証成功
 				findUser = new User(user.getName());
 
