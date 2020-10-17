@@ -9,7 +9,6 @@
 		<div class="col-md-3"></div>
 			<div class="col-md-6 text-center">
 				<i class="far fa-surprise fa-7x"></i>
-				<small><%= loginUser.getName() %>さん</small>
 			</div>
 		<div class="col-md-3 d-flex justify-content-end align-items-end">
 			<div class="mb-2">
@@ -20,7 +19,7 @@
 				      	<div class="modal-header">
 				        </div>
 				        <div class="modal-body">
-				            <form class="needs-validation" novalidate action="/Main" method="post">
+				            <form class="needs-validation" novalidate action="/registerapp/Main" method="post">
                       		<div class="form-group">
 				            	<textarea class="form-control pt-5 pb-4" style="text-align:center;" name="text" placeholder="こちらにつぶやいて下さい"required></textarea>
       							<div class="invalid-feedback">何かつぶやいてください</div>
@@ -36,7 +35,8 @@
 			  	</div>
 			</div>
 			<div class="mb-2">
-			<a class="ml-3" href="/Logout"><button class="btn btn-secondary">ログアウト</button></a>
+			<div class="mb-3 text-right"><i class="far fa-grin-wink fa-2x"></i><small class="pl-1"><%= loginUser.getName() %>さん</small></div>
+			<div><a class="ml-3" href="/registerapp/Logout"><button class="btn btn-secondary">ログアウト</button></a></div>
 			</div>
 		</div>
 	</div>

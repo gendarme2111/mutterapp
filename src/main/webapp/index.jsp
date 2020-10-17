@@ -105,7 +105,7 @@
 
 					<!-- Goodアイコンの色を外して、aタグを付ける -->
 					<!-- Goodが押された場合は、SiteEVControllerにaction=likeと,リスト番号iをgetで送る -->
-					<a href="/SiteEVController?action=like&i=<%=i%>"
+					<a href="/registerapp/SiteEVController?action=like&i=<%=i%>"
 						style="text-decoration: none;"> <i
 						class="fas fa-thumbs-up ml-1" style="color: grey;"></i>
 					</a>
@@ -149,7 +149,7 @@
 
 					<!-- Badアイコンの色を外して、aタグを付ける -->
 					<!-- Badが押された場合は、SiteEVControllerにaction=dislikeと,リスト番号iをgetで送る -->
-					<a href="/SiteEVController?action=dislike&i=<%=i%>"
+					<a href="/registerapp/SiteEVController?action=dislike&i=<%=i%>"
 						style="text-decoration: none;"> <i
 						class="fas fa-thumbs-down ml-1" style="color: grey;"></i>
 					</a>

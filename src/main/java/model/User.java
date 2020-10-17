@@ -14,6 +14,10 @@ public class User implements Serializable {
     this.pass = pass;
   }
 
+  public User(String name) {
+	    this.name = name;
+	  }
+
   public String getName() {
     return name;
   }

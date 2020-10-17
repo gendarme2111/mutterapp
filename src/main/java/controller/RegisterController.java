@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import model.CheckLogic;
 import model.RegisterLogic;
 
@@ -37,7 +39,8 @@ public class RegisterController extends HttpServlet {
 		if ((nameErr == null && passErr == null) || (nameErr.length() == 0 && passErr.length() == 0)) {
 
 			RegisterLogic registerLogic = new RegisterLogic();
-			boolean flag = registerLogic.executeRegister(name,pass);
+			String hashedPass = BCrypt.hashpw(pass, BCrypt.gensalt());
+			boolean flag = registerLogic.executeRegister(name,hashedPass);
 
 			if(flag) {
 

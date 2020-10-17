@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import model.User;
 
 public class UserDAO {
@@ -14,8 +16,9 @@ public class UserDAO {
 	private final String DB_USER = "b9201eff92bb81";
 	private final String DB_PASS = "301dd190";
 	private boolean flag;
+	private String hashedPass;
 
-	public boolean createUser(String name, String pass) {
+	public boolean createUser(String name, String hashedPass) {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,7 +34,7 @@ public class UserDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// INSERT文中の「?」に使用する値を設定しSQLを完成
 			pStmt.setString(1, name);
-			pStmt.setString(2, pass);
+			pStmt.setString(2, hashedPass);
 
 			// INSERT文を実行
 			int result = pStmt.executeUpdate();
@@ -108,22 +111,26 @@ public class UserDAO {
 
 			// SELECT文の準備(idは自動連番なので指定しなくてよい）
 			// 入力されたユーザ名に対応するパスワードを抽出
-			String sql = "SELECT NAME,PASSWORD FROM MUTTER_USERS WHERE NAME = ? and PASSWORD = ?";
+			String sql = "SELECT PASSWORD FROM MUTTER_USERS WHERE NAME = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// INSERT文中の「?」に使用する値を設定しSQLを完成
 			pStmt.setString(1, user.getName());
-			pStmt.setString(2, user.getPass());
 
 			// INSERT文を実行
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				String username = rs.getString("name");
-				String pass = rs.getString("password");
-
-				findUser = new User(username, pass);
+				String hashedPass = rs.getString("password");
+				this.hashedPass = hashedPass;
 			}
+			if (BCrypt.checkpw(user.getPass(), hashedPass)) {
+				// 認証成功
+				findUser = new User(user.getName());
 
+			} else {
+				// 認証失敗
+				findUser = null;
+			}
 			conn.close();
 			pStmt.close();
 
