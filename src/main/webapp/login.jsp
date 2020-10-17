@@ -10,7 +10,7 @@
 	<%	if(request.getAttribute("nameErr")!=null||request.getAttribute("passErr")!=null||request.getAttribute("loginErr")!=null){ %>
 	<p class="text-center mt-5">Mutterにログイン</p>
 	<div class="border mx-auto w-25 bg-primary">
-		<form action="/registerapp/LoginController" method="post">
+		<form action="/LoginController" method="post">
 			<div class="form-group mt-4 ml-4 mr-4">
 				ユーザー名<input class="form-control mt-2 " type="text" name="name" placeholder="半角英数字で入力">
 				<small class="text-danger"><%= request.getAttribute("loginErr") %></small>
@@ -26,7 +26,7 @@
 	<%}else{ %>
 	<p class="text-center mt-5">Mutterにログイン</p>
 	<div class="border mx-auto w-25 bg-primary">
-		<form action="/registerapp/LoginController" method="post">
+		<form action="/LoginController" method="post">
 			<div class="form-group mt-4 ml-4 mr-4">
 				ユーザー名<input class="form-control mt-2 " type="text" name="name" placeholder="半角英数字で入力">
 				パスワード<input class="form-control mt-2" type="password" name="pass" placeholder="半角英数字で入力">
