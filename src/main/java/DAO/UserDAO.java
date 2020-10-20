@@ -12,9 +12,9 @@ import model.User;
 
 public class UserDAO {
 
-	private final String JDBC_URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_f9df51be1dbd806?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private final String DB_USER = "b9201eff92bb81";
-	private final String DB_PASS = "301dd190";
+	private final String JDBC_URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_7cd5d8d578f81a7?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private final String DB_USER = "b2ae38c00eecc7";
+	private final String DB_PASS = "42635a5c";
 	private boolean flag;
 	private String hashedPass;
 
